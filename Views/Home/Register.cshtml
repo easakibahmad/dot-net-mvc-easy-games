@@ -1,0 +1,12 @@
+@model EasyGames.Models.User
+@{
+    ViewData["Title"] = "Register";
+}
+<h2>Create Your Account</h2>
+<form asp-action="Register" method="post">
+    <input asp-for="Username" class="form-control mb-2" placeholder="Username" required />
+    <input asp-for="Email" type="email" class="form-control mb-2" placeholder="Email" required />
+    <input asp-for="Password" type="password" class="form-control mb-2" placeholder="Password" required />
+    <button type="submit" class="btn btn-success">Register</button>
+    <a href="/Home/Index" class="btn btn-secondary">Cancel</a>
+</form>

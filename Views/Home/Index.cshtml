@@ -1,0 +1,27 @@
+@model List<EasyGames.Models.Stock>
+@{
+    ViewData["Title"] = "Home";
+}
+<h2>Welcome to Easy Games</h2>
+<a href="/Home/Register" class="btn btn-primary mb-3">Create Account</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th><th>Category</th><th>Quantity</th><th>Price</th><th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model){
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Category</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price</td>
+                <td>
+                    <a href="/Cart/Add/@item.Id" class="btn btn-success btn-sm">Add to Cart</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

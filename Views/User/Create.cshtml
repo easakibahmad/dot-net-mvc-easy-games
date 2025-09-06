@@ -1,0 +1,12 @@
+@model EasyGames.Models.User
+@{
+    ViewData["Title"] = "Create User";
+}
+<h2>Create User</h2>
+<form asp-action="Create" method="post">
+<input asp-for="Username" class="form-control mb-2" placeholder="Username" required />
+<input asp-for="Email" type="email" class="form-control mb-2" placeholder="Email" required />
+<input asp-for="Password" type="password" class="form-control mb-2" placeholder="Password" required />
+<button type="submit" class="btn btn-success">Save</button>
+<a href="/User/Index" class="btn btn-secondary">Cancel</a>
+</form>
