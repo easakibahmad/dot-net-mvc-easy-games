@@ -5,7 +5,7 @@
 
 <div class="container mt-5 d-flex justify-content-center">
     <div class="card shadow-sm rounded-3 p-4" style="max-width: 500px; width:100%;">
-        <h2 class="text-center text-primary mb-4">✏️ Edit User</h2>
+        <h2 class="text-center text-dark mb-4">Edit User</h2>
 
         <form asp-action="Edit" method="post">
             <input type="hidden" asp-for="Id" />
@@ -24,13 +24,13 @@
                 <label asp-for="Password" class="form-label">Password</label>
                 <div class="input-group">
                     <input asp-for="Password" type="password" id="passwordInput" class="form-control" value="@Model.Password" required />
-                    <button type="button" class="btn btn-outline-secondary" id="togglePasswordBtn" onclick="togglePassword()">Show</button>
+                    <button type="button" class="btn border" id="togglePasswordBtn" onclick="togglePassword()">Show</button>
                 </div>
             </div>
 
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-success">Update</button>
-                <a href="/User/Index" class="btn btn-outline-secondary">Cancel</a>
+                <button type="submit" class="btn btn-dark">Update</button>
+                <a href="/User/Index" class="btn border">Cancel</a>
             </div>
         </form>
     </div>

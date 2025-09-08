@@ -5,17 +5,22 @@
 
 <div class="container mt-5 d-flex justify-content-center">
     <div class="card shadow-sm rounded-3 p-4" style="max-width: 500px; width:100%;">
-        <h2 class="text-center text-primary mb-4">Create New Stock</h2>
+        <h2 class="text-center text-dark mb-4">Create New Stock</h2>
 
         <form asp-action="Create" method="post">
             <div class="mb-3">
                 <label asp-for="Name" class="form-label">Name</label>
                 <input asp-for="Name" class="form-control" placeholder="Enter stock name" required />
             </div>
-
+            
             <div class="mb-3">
                 <label asp-for="Category" class="form-label">Category</label>
-                <input asp-for="Category" class="form-control" placeholder="Enter category" required />
+                <select asp-for="Category" class="form-select" required>
+                    <option value="">Select a category</option>
+                    <option value="Book">Book</option>
+                    <option value="Game">Game</option>
+                    <option value="Toy">Toy</option>
+                </select>
             </div>
 
             <div class="mb-3">
@@ -29,8 +34,8 @@
             </div>
 
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-success">Save</button>
-                <a href="/Stock/Index" class="btn btn-outline-secondary">Cancel</a>
+                <button type="submit" class="btn btn-dark">Save</button>
+                <a href="/Stock/Index" class="btn border">Cancel</a>
             </div>
         </form>
     </div>

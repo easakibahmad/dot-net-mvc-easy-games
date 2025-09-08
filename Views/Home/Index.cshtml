@@ -4,15 +4,15 @@
 }
 <div class="container mt-4">
     <div class="text-center mb-4">
-        <h1 class="display-5 fw-bold text-primary">Welcome to Easy Games</h1>
-        <p class="text-muted">Shop Books, Games, and Toys with ease</p>
-        <a href="/Home/Register" class="btn btn-outline-primary btn-lg">Create Account</a>
+        <h1 class="display-5 fw-bold text-dark">Welcome to Easy Games</h1>
+        <p class="text-muted">Easily Shop Books, Games & Toys</p>
+        <a href="/Home/Register" class="btn btn-outline-dark btn-lg">Create Account</a>
     </div>
 
     @if (!Model.Any())
     {
-        <div class="alert alert-info text-center">
-            No stock available at the moment. Please check back later!
+        <div class="alert alert-warning text-center">
+            No stock available at the moment. Please visit again soon.
         </div>
     }
     else
@@ -39,7 +39,7 @@
                                 <td>@item.Quantity</td>
                                 <td>@item.Price.ToString("0.00")</td>
                                 <td>
-                                    <a href="/Cart/Add/@item.Id" class="btn btn-success btn-sm w-100">
+                                    <a href="/Cart/Add/@item.Id" class="btn btn-outline-dark btn-sm w-100">
                                         Add to Cart
                                     </a>
                                 </td>

@@ -5,13 +5,13 @@
 
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="text-primary">Stock List</h2>
-        <a href="/Stock/Create" class="btn btn-primary">Add Stock</a>
+        <h2 class="text-dark">Stock List</h2>
+        <a href="/Stock/Create" class="btn btn-dark">Add Stock</a>
     </div>
 
     @if (!Model.Any())
     {
-        <div class="alert alert-info text-center">
+        <div class="alert alert-warning text-center">
             No stock items available. Please add some!
         </div>
     }
@@ -38,9 +38,9 @@
                                 <td>@stock.Quantity</td>
                                 <td>@stock.Price.ToString("0.00")</td>
                                 <td class="d-flex gap-1">
-                                    <a href="/Stock/Edit/@stock.Id" class="btn btn-warning btn-sm flex-fill">Edit</a>
-                                    <a href="/Stock/Delete/@stock.Id" class="btn btn-danger btn-sm flex-fill">Delete</a>
-                                    <a href="/Cart/Add/@stock.Id" class="btn btn-success btn-sm flex-fill">Add to Cart</a>
+                                    <a href="/Stock/Edit/@stock.Id" class="btn btn-outline-warning btn-sm flex-fill">Edit</a>
+                                    <a href="/Stock/Delete/@stock.Id" class="btn btn-outline-danger btn-sm flex-fill">Delete</a>
+                                    <a href="/Cart/Add/@stock.Id" class="btn btn-outline-success btn-sm flex-fill">Add to Cart</a>
                                 </td>
                             </tr>
                         }
