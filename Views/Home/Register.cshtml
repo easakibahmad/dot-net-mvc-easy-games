@@ -2,11 +2,49 @@
 @{
     ViewData["Title"] = "Register";
 }
-<h2>Create Your Account</h2>
-<form asp-action="Register" method="post">
-    <input asp-for="Username" class="form-control mb-2" placeholder="Username" required />
-    <input asp-for="Email" type="email" class="form-control mb-2" placeholder="Email" required />
-    <input asp-for="Password" type="password" class="form-control mb-2" placeholder="Password" required />
-    <button type="submit" class="btn btn-success">Register</button>
-    <a href="/Home/Index" class="btn btn-secondary">Cancel</a>
-</form>
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-sm rounded-3 p-4" style="max-width: 500px; width:100%;">
+        <h2 class="text-center text-primary mb-4">Create Your Account</h2>
+
+        <form asp-action="Register" method="post">
+            <div class="mb-3">
+                <label asp-for="Username" class="form-label">Username</label>
+                <input asp-for="Username" class="form-control" placeholder="Enter username" required />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email</label>
+                <input asp-for="Email" type="email" class="form-control" placeholder="Enter email" required />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <div class="input-group">
+                    <input asp-for="Password" type="password" id="passwordInput" class="form-control" placeholder="Enter password" required />
+                    <button type="button" class="btn btn-outline-secondary" id="togglePasswordBtn" onclick="togglePassword()">Show</button>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-success">Register</button>
+                <a href="/Home/Index" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function togglePassword() {
+        var passwordInput = document.getElementById("passwordInput");
+        var toggleBtn = document.getElementById("togglePasswordBtn");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleBtn.textContent = "Hide";
+        } else {
+            passwordInput.type = "password";
+            toggleBtn.textContent = "Show";
+        }
+    }
+</script>

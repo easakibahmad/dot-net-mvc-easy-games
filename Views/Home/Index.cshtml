@@ -2,26 +2,52 @@
 @{
     ViewData["Title"] = "Home";
 }
-<h2>Welcome to Easy Games</h2>
-<a href="/Home/Register" class="btn btn-primary mb-3">Create Account</a>
+<div class="container mt-4">
+    <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold text-primary">Welcome to Easy Games</h1>
+        <p class="text-muted">Shop Books, Games, and Toys with ease</p>
+        <a href="/Home/Register" class="btn btn-outline-primary btn-lg">Create Account</a>
+    </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th><th>Category</th><th>Quantity</th><th>Price</th><th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var item in Model){
-            <tr>
-                <td>@item.Name</td>
-                <td>@item.Category</td>
-                <td>@item.Quantity</td>
-                <td>@item.Price</td>
-                <td>
-                    <a href="/Cart/Add/@item.Id" class="btn btn-success btn-sm">Add to Cart</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center">
+            No stock available at the moment. Please check back later!
+        </div>
+    }
+    else
+    {
+        <div class="card shadow-sm rounded-3">
+            <div class="card-body">
+                <h4 class="card-title mb-3 text-secondary">Available Stock</h4>
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Quantity</th>
+                            <th>Price ($)</th>
+                            <th style="width:150px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Category</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.Price.ToString("0.00")</td>
+                                <td>
+                                    <a href="/Cart/Add/@item.Id" class="btn btn-success btn-sm w-100">
+                                        Add to Cart
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
