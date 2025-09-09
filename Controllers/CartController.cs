@@ -13,12 +13,16 @@ namespace EasyGames.Controllers
 
         public IActionResult Index()
         {
+            if (!IsLoggedIn()) return RedirectToLogin();
+
             var cart = GetCart();
             return View(cart);
         }
 
         public IActionResult Add(int id)
         {
+            if (!IsLoggedIn()) return RedirectToLogin();
+
             var stock = _context.Stocks.Find(id);
             if (stock == null) return NotFound();
 
@@ -33,6 +37,8 @@ namespace EasyGames.Controllers
 
         public IActionResult Checkout()
         {
+            if (!IsLoggedIn()) return RedirectToLogin();
+
             HttpContext.Session.Remove(CartKey);
             return View("Success");
         }
@@ -46,6 +52,13 @@ namespace EasyGames.Controllers
         private void SaveCart(List<CartItem> cart)
         {
             HttpContext.Session.SetObjectAsJson(CartKey, cart);
+        }
+
+        private bool IsLoggedIn() => TempData["Username"] != null;
+
+        private IActionResult RedirectToLogin()
+        {
+            return RedirectToAction("Login", "User");
         }
     }
 

@@ -6,7 +6,9 @@
     <div class="text-center mb-4">
         <h1 class="display-5 fw-bold text-dark">Welcome to Easy Games</h1>
         <p class="text-muted">Easily Shop Books, Games & Toys</p>
-        <a href="/Home/Register" class="btn btn-outline-dark btn-lg">Create Account</a>
+        @if (string.IsNullOrEmpty(ViewBag.Username)){
+            <a href="/Home/Register" class="btn btn-outline-dark btn-lg">Create Account</a>
+        }
     </div>
 
     @if (!Model.Any())

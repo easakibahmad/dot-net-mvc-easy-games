@@ -24,8 +24,10 @@ namespace EasyGames.Controllers
         {
             if (ModelState.IsValid)
             {
+                user.Role = "User"; 
                 _context.Users.Add(user);
                 _context.SaveChanges();
+                TempData["Username"] = user.Username;
                 return RedirectToAction("Index");
             }
             return View(user);

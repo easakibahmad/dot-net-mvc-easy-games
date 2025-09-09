@@ -45,5 +45,31 @@ namespace EasyGames.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public IActionResult Login() => View();
+        [HttpPost]
+        public IActionResult Login(string username, string password)
+        {
+            var user = _context.Users
+                .FirstOrDefault(u => u.Username == username && u.Password == password);
+
+            if (user != null)
+            {
+                TempData["Username"] = user.Username; 
+                TempData["Role"] = user.Role; 
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.Error = "Invalid username or password.";
+                return View();
+            }
+        }
+
+        public IActionResult Logout()
+        {
+            TempData.Clear();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

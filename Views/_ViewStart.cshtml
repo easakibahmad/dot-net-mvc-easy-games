@@ -1,3 +1,10 @@
 ﻿@{
     Layout = "_Layout";
+    ViewBag.Username = TempData["Username"] as string;
+    ViewBag.Role = TempData["Role"] as string;
+    if(ViewBag.Username != null)
+    {
+        TempData.Keep("Username");
+        TempData.Keep("Role"); 
+    }
 }
