@@ -12,13 +12,13 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container align-items-center">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EasyGames</a>
+                <a class="navbar-brand fs-4" asp-area="" asp-controller="Home" asp-action="Index">EasyGames</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse justify-content-start justify-content-lg-center">
-                    <ul class="navbar-nav w-100 justify-content-lg-center mb-2 mb-lg-0">
+                <div class="collapse align-items-center navbar-collapse justify-content-end">
+                    <ul class="navbar-nav d-flex align-items-md-center justify-content-center gap-3 fs-5 mb-0">
                         <li class="nav-item">
                             @if (ViewBag.Role == "Owner")
                             {
@@ -34,7 +34,7 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Cart" asp-action="Index">Cart</a>
                         </li>
-                        <li class="ms-lg-auto">
+                        <li class="nav-item">
                             @if (!string.IsNullOrEmpty(ViewBag.Username))
                             {
                                 <div class="d-flex align-items-center gap-3">
@@ -44,7 +44,7 @@
                             }
                             else
                             {
-                                <a class="nav-link btn bg-dark text-white" asp-controller="User" asp-action="Login">Login</a>
+                                <a class="nav-link btn bg-dark text-white px-2" asp-controller="User" asp-action="Login">Login</a>
                             }
                         </li>
                     </ul>
