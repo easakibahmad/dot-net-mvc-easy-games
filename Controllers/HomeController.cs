@@ -11,12 +11,10 @@ namespace EasyGames.Controllers
 
         public IActionResult Index()
         {
-            // Show all stock to users
             var stock = _context.Stocks.ToList();
             return View(stock);
         }
 
-        // User Registration
         public IActionResult Register() => View();
 
         [HttpPost]

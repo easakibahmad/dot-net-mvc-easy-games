@@ -33,8 +33,8 @@ using (var scope = app.Services.CreateScope())
     if (!context.Users.Any())
     {
         context.Users.AddRange(
-            new User { Username = "owner", Email = "owner@email.com", Password = "12345", Role = "Owner" },
-            new User { Username = "user", Email = "user@email.com", Password = "12345", Role = "User" }
+            new User { Username = "owner", Email = "owner@email.com", Password = "owner123", Role = "Owner" },
+            new User { Username = "user", Email = "user@email.com", Password = "user123", Role = "User" }
         );
     }
 
