@@ -1,0 +1,31 @@
+@model List<EasyGames.Models.Stock>
+
+<div class="container mt-4">
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning text-center">
+            No stock available at the moment. Please visit again soon.
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@item.Name</h5>
+                            <p class="card-text text-muted mb-2">@item.Category</p>
+                            <p class="card-text mb-2">Qty: @item.Quantity</p>
+                            <p class="card-text mb-3">$@item.Price.ToString("0.00")</p>
+                            <div class="mt-auto">
+                                <a href="/Cart/Add/@item.Id" class="btn btn-dark w-100">Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
