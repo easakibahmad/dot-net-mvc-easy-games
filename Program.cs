@@ -34,7 +34,8 @@ using (var scope = app.Services.CreateScope())
     {
         context.Users.AddRange(
             new User { Username = "owner", Email = "owner@email.com", Password = "owner123", Role = "Owner" },
-            new User { Username = "user", Email = "user@email.com", Password = "user123", Role = "User" }
+            new User { Username = "user", Email = "user@email.com", Password = "user123", Role = "User" },
+            new User { Username = "user2", Email = "user2@email.com", Password = "user123", Role = "User" }
         );
     }
 
