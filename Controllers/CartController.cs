@@ -40,6 +40,26 @@ namespace EasyGames.Controllers
         {
             if (!IsLoggedIn()) return RedirectToLogin();
 
+            var cart = GetCart();
+            if (cart.Any())
+            {
+                foreach (var cartItem in cart)
+                {
+                    var stockItem = _context.Stocks.Find(cartItem.StockId);
+                    if (stockItem != null)
+                    {
+                        stockItem.Quantity -= cartItem.Quantity;
+
+                        if (stockItem.Quantity <= 0)
+                        {
+                            _context.Stocks.Remove(stockItem);
+                        }
+                    }
+                }
+
+                _context.SaveChanges();
+            }
+
             HttpContext.Session.Remove(CartKey);
             return View("Success");
         }
