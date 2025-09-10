@@ -3,6 +3,15 @@
     ViewData["Title"] = "Shopping Cart";
 }
 
+@if (TempData["AddCart"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["AddCart"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
 <div class="container mt-4">
     <h2 class="text-dark mb-4">Shopping Cart</h2>
 

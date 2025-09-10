@@ -32,6 +32,7 @@ namespace EasyGames.Controllers
             else cart.Add(new CartItem { StockId = stock.Id, Name = stock.Name, Price = stock.Price, Quantity = 1 });
 
             SaveCart(cart);
+            TempData["AddCart"] = "Item added to the cart successfully!";
             return RedirectToAction("Index");
         }
 

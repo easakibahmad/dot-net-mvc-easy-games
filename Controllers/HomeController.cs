@@ -26,6 +26,7 @@ namespace EasyGames.Controllers
                 _context.Users.Add(user);
                 _context.SaveChanges();
                 TempData["Username"] = user.Username;
+                TempData["Register"] = "Registration completed successfully!";
                 return RedirectToAction("Index");
             }
             return View(user);

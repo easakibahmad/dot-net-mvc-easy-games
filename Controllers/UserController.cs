@@ -66,6 +66,7 @@ namespace EasyGames.Controllers
             {
                 TempData["Username"] = user.Username; 
                 TempData["Role"] = user.Role; 
+                TempData["Login"] = "Logged in successfully!";
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -78,6 +79,7 @@ namespace EasyGames.Controllers
         public IActionResult Logout()
         {
             TempData.Clear();
+            TempData["Logout"] = "Logged out successfully!";
             return RedirectToAction("Index", "Home");
         }
     }

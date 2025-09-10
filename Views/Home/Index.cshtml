@@ -2,6 +2,22 @@
 @{
     ViewData["Title"] = "Home";
 }
+
+@{
+    var successKeys = new[] { "Logout", "Login", "Register" };
+}
+
+@foreach (var key in successKeys)
+{
+    if (TempData[key] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData[key]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}
+
 <div class="container mt-4">
     <div class="text-center mb-4">
         <h1 class="display-5 fw-bold text-dark">Welcome to Easy Games</h1>
