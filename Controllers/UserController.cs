@@ -16,8 +16,15 @@ namespace EasyGames.Controllers
         [HttpPost]
         public IActionResult Create(User user)
         {
+            var existingUser = _context.Users.FirstOrDefault(u => u.Username == user.Username);
+            if (existingUser != null)
+            {
+                TempData["UserCreateError"] = "Username already exists. Please choose a different one.";
+                return RedirectToAction("Create");
+            }
             _context.Users.Add(user);
             _context.SaveChanges();
+            TempData["UserCreateSuccess"] = "User created successfully!";
             return RedirectToAction("Index");
         }
 
@@ -32,6 +39,7 @@ namespace EasyGames.Controllers
         {
             _context.Users.Update(user);
             _context.SaveChanges();
+            TempData["UserUpdate"] = $"User '{user.Username}' was updated successfully!";
             return RedirectToAction("Index");
         }
 
@@ -42,6 +50,7 @@ namespace EasyGames.Controllers
             {
                 _context.Users.Remove(user);
                 _context.SaveChanges();
+                TempData["UserDelete"] = $"User '{user.Username}' was deleted successfully!";
             }
             return RedirectToAction("Index");
         }

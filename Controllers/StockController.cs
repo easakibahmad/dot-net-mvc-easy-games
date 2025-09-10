@@ -18,6 +18,7 @@ namespace EasyGames.Controllers
         {
             _context.Stocks.Add(stock);
             _context.SaveChanges();
+            TempData["StockCreate"] = "Stock created successfully!";
             return RedirectToAction("Index");
         }
 
@@ -32,6 +33,7 @@ namespace EasyGames.Controllers
         {
             _context.Stocks.Update(stock);
             _context.SaveChanges();
+            TempData["StockUpdate"] = $"Stock '{stock.Name}' was updated successfully!";
             return RedirectToAction("Index");
         }
 
@@ -42,6 +44,8 @@ namespace EasyGames.Controllers
             {
                 _context.Stocks.Remove(stock);
                 _context.SaveChanges();
+                TempData["StockDelete"] = $"Stock '{stock.Name}' was deleted successfully!";
+
             }
             return RedirectToAction("Index");
         }
