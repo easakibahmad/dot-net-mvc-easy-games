@@ -6,7 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("EasyGamesDB"));
+
+// Use Neon PostgreSQL instead of InMemory
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Enable session
 builder.Services.AddDistributedMemoryCache();
@@ -14,10 +17,13 @@ builder.Services.AddSession();
 
 var app = builder.Build();
 
-// Seed initial data
+// Seed initial data if DB is empty
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+    // Apply migrations automatically
+    context.Database.Migrate();
 
     // Seed Stocks
     if (!context.Stocks.Any())
