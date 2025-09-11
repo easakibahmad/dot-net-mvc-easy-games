@@ -1,15 +1,25 @@
 using EasyGames.Data;
 using EasyGames.Models;
 using Microsoft.EntityFrameworkCore;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
+Env.Load();
 
 // Add services
 builder.Services.AddControllersWithViews();
 
+var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
+
+var owner = Environment.GetEnvironmentVariable("Owner");
+var ownerPassword = Environment.GetEnvironmentVariable("OwnerPassword");
+var user = Environment.GetEnvironmentVariable("User");
+var userPassword = Environment.GetEnvironmentVariable("UserPassword");
+var ownerEmail = Environment.GetEnvironmentVariable("OwnerEmail");
+var userEmail = Environment.GetEnvironmentVariable("UserEmail");
+
 // Use Neon PostgreSQL instead of InMemory
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
 
 // Enable session
 builder.Services.AddDistributedMemoryCache();
@@ -39,10 +49,8 @@ using (var scope = app.Services.CreateScope())
     if (!context.Users.Any())
     {
         context.Users.AddRange(
-            new User { Username = "owner", Email = "owner@email.com", Password = "owner123", Role = "Owner" },
-            new User { Username = "user", Email = "user@email.com", Password = "user123", Role = "User" },
-            new User { Username = "user2", Email = "user2@email.com", Password = "user123", Role = "User" }
-        );
+            new User { Username = owner, Email = ownerEmail, Password = ownerPassword, Role = "Owner" },
+            new User { Username = user, Email = userEmail, Password = userPassword, Role = "User" });
     }
 
     context.SaveChanges();
